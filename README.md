@@ -92,7 +92,14 @@ To develop a centralized HR management application that simplifies employee admi
 Project Name: CrewConnect  
 Project Type: Django Web Application  
 Domain: Human Resource Management / Employee Management
-Technology: Python, Django, HTML, CSS, JavaScript
+## 🛠️ Technologies Used
+
+- **Backend:** Python, Django
+- **Frontend:** HTML, CSS, JavaScript
+- **Database:** MySQL
+- **ORM:** Django ORM
+- **Version Control:** Git and GitHub
+- **IDE:** PyCharm
 ---
 
 *CrewConnect – Simplifying HR and Employee Management.*
