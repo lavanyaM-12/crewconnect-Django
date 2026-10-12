@@ -1,0 +1,223 @@
+<aside class="sidebar">
+
+
+
+
+   <!-- ================================
+        LOGO
+   ================================= -->
+
+
+   <div class="logo">
+
+
+       <i class="bi bi-people-fill"></i>
+
+
+       <span>CrewConnect</span>
+
+
+   </div>
+
+
+
+
+   <!-- ================================
+        NAVIGATION
+   ================================= -->
+
+
+   <nav class="sidebar-nav">
+
+
+
+
+       <!-- Dashboard -->
+
+
+       <a href="{% url 'dashboard' %}"
+          class="nav-item active">
+
+
+           <i class="bi bi-grid-1x2-fill"></i>
+
+
+           <span>Dashboard</span>
+
+
+       </a>
+
+
+
+
+       <!-- ============================
+            EMPLOYEES
+       ============================= -->
+
+
+       <div class="nav-section">
+
+
+
+
+           <div class="nav-item">
+
+
+               <div class="nav-item-left">
+
+
+                   <i class="bi bi-people"></i>
+
+
+                   <span>Employees</span>
+
+
+               </div>
+
+
+
+
+               <i class="bi bi-chevron-down"></i>
+
+
+           </div>
+
+
+
+
+           <div class="submenu">
+
+
+
+
+               <!-- Add Employee -->
+
+
+               <a href="{% url 'employee_create' %}">
+
+
+                   <i class="bi bi-person-plus"></i>
+
+
+                   <span>Add Employee</span>
+
+
+               </a>
+
+
+
+
+               <!-- View Employees -->
+
+
+               <a href="{% url 'employee_list' %}">
+
+
+                   <i class="bi bi-person-lines-fill"></i>
+
+
+                   <span>View Employees</span>
+
+
+               </a>
+
+
+
+
+           </div>
+
+
+       </div>
+
+
+
+
+       <!-- ============================
+            LEAVE APPROVAL
+       ============================= -->
+
+
+       <a href="{% url 'leave_approve' %}"
+          class="nav-item">
+
+
+           <i class="bi bi-calendar-check"></i>
+
+
+           <span>Leave Approval</span>
+
+
+       </a>
+
+
+
+
+       <!-- ============================
+            DEPARTMENTS
+       ============================= -->
+
+
+       <a href="{% url 'department_list' %}"
+          class="nav-item">
+
+
+           <i class="bi bi-building"></i>
+
+
+           <span>Departments</span>
+
+
+       </a>
+
+
+
+
+       <!-- ============================
+            DESIGNATIONS
+       ============================= -->
+
+
+       <a href="{% url 'designation_list' %}"
+          class="nav-item">
+
+
+           <i class="bi bi-briefcase"></i>
+
+
+           <span>Designations</span>
+
+
+       </a>
+
+
+
+
+   </nav>
+
+
+
+
+   <!-- ================================
+        LOGOUT
+   ================================= -->
+
+
+   <div class="sidebar-footer">
+
+
+       <a href="{% url 'logout' %}"
+          class="nav-item logout">
+
+
+           <i class="bi bi-box-arrow-right"></i>
+
+
+           <span>Logout</span>
+
+
+       </a>
+
+
+   </div>
+
+</aside>

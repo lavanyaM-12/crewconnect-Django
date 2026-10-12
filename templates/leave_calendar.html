@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link
+    href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css"
+    rel="stylesheet"
+>
+<style>
+    #leave-calendar {
+        background: #fff;
+    }
+    .legend-dot {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 6px;
+    }
+    .fc-event {
+        cursor: pointer;
+        border: none;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2>Leave Calendar</h2>
+            <p class="text-muted">
+                Overview of your applied leaves by date
+            </p>
+        </div>
+
+        <a href="{% url 'apply_leave' %}" class="btn btn-primary">
+            Apply Leave
+        </a>
+    </div>
+
+    <!-- Status Legend -->
+    <div class="mb-3">
+        <span class="me-4">
+            <span class="legend-dot" style="background:#28a745;"></span>
+            Approved
+        </span>
+        <span class="me-4">
+            <span class="legend-dot" style="background:#ffc107;"></span>
+            Pending
+        </span>
+        <span class="me-4">
+            <span class="legend-dot" style="background:#dc3545;"></span>
+            Rejected
+        </span>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div id="leave-calendar"></div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Leave Detail Modal -->
+<div class="modal fade" id="leaveDetailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="leaveDetailTitle">Leave Details</h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+            </div>
+
+            <div class="modal-body">
+                <p><strong>Type:</strong> <span id="leaveDetailType"></span></p>
+                <p><strong>Status:</strong> <span id="leaveDetailStatus"></span></p>
+                <p><strong>From:</strong> <span id="leaveDetailStart"></span></p>
+                <p><strong>To:</strong> <span id="leaveDetailEnd"></span></p>
+                <p><strong>Reason:</strong> <span id="leaveDetailReason"></span></p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
+{{ leave_events|json_script:"leave-events-data" }}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const events = JSON.parse(
+            document.getElementById("leave-events-data").textContent
+        );
+
+        const calendarEl = document.getElementById("leave-calendar");
+
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: "dayGridMonth",
+            height: "auto",
+            headerToolbar: {
+                left: "prev,next today",
+                center: "title",
+                right: "dayGridMonth,dayGridWeek",
+            },
+            events: events,
+            eventClick: function (info) {
+
+                const props = info.event.extendedProps;
+
+                document.getElementById("leaveDetailType").textContent = props.leave_type;
+                document.getElementById("leaveDetailStatus").textContent = props.status;
+                document.getElementById("leaveDetailStart").textContent = props.start_date;
+                document.getElementById("leaveDetailEnd").textContent = props.end_date;
+                document.getElementById("leaveDetailReason").textContent = props.reason;
+
+                const modal = new bootstrap.Modal(
+                    document.getElementById("leaveDetailModal")
+                );
+                modal.show();
+            },
+        });
+
+        calendar.render();
+    });
+</script>
+{% endblock %}
+
+
+
+
+
